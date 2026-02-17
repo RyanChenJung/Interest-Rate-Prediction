@@ -21,25 +21,27 @@ We compared linear methods against ensemble tree methods. The non-linear approac
 ## 🛠️ Methodology
 
 ### 1. Data Cleaning & Preprocessing
-* **Date Parsing:** Corrected "Century Rollover" errors in credit history dates (e.g., distinguishing 19xx from 20xx).
-* **String Cleaning:** Removed artifacts (`%`, `$`) from numerical columns.
+* **Date Parsing:** Corrected "Century Rollover" errors in credit history dates (e.g., distinguishing 19xx from 20xx) and fixed mixed date formats.
+* **String Cleaning:** Removed artifacts (`%`, `$`) from numerical columns to ensure proper data typing.
 * **Imputation:** Applied domain-specific imputation for missing values (e.g., Median for Income, 'Unknown' for categorical features).
 
 ### 2. Feature Engineering
-* **Target Encoding:** Applied Smoothed Target Encoding to the `State` ($X20$) variable to capture geographic risk without high dimensionality.
+* **Target Encoding:** Applied Smoothed Target Encoding to the `State` ($X20$) variable to capture geographic risk signals without high dimensionality.
 * **Ratio Features:** Created new financial ratios (e.g., `Funded Ratio`, `Credit History Length`) to expose latent signals.
+* **Log Transformation:** Applied log transformation to skewed features (e.g., Annual Income) to normalize distributions.
 
 ### 3. Feature Selection Strategy
-* **Lasso (L1):** Used to identify and remove strictly redundant linear features.
-* **Recursive Feature Elimination (RFE):** Used with a Random Forest estimator to identify the Top 20 non-linear predictors.
-* **Final Decision:** Adopted a **"Greedy Strategy"** (using all 39 features) for the final Random Forest model to capture all potential interactions and maximize predictive power.
+* **Lasso (L1):** Used initially to identify and remove strictly redundant linear features.
+* **Recursive Feature Elimination (RFE):** Used with a Random Forest estimator to analyze non-linear feature importance.
+* **Final Decision:** Adopted a **"Greedy Strategy"** (utilizing all 39 features) for the final Random Forest model to capture all potential interactions and maximize predictive power.
 
 ### 4. Model Optimization
-* **Hyperparameter Tuning:** Utilized `RandomizedSearchCV` with 5-fold Cross-Validation.
+* **Hyperparameter Tuning:** Utilized `RandomizedSearchCV` with 5-fold Cross-Validation on a training subset.
 * **Best Parameters:** `n_estimators=300`, `max_depth=25`, `min_samples_leaf=2`.
 * **Diagnostics:** Validated model stability using Learning Curves to ensure no severe overfitting occurred.
 
 ## 📂 Repository Structure
+```text
 ├── data/                   # (Optional) Folder for raw data
 ├── notebooks/              # Jupyter Notebooks containing the full pipeline
 ├── results/                # Generated prediction files
@@ -54,5 +56,3 @@ We compared linear methods against ensemble tree methods. The non-linear approac
    ```bash
    pip install -r requirements.txt
 3. Run the Jupyter Notebook to execute the training pipeline and generate predictions.
-
-Author: Ryan Chen Jung
