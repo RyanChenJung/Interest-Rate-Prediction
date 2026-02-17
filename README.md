@@ -41,7 +41,7 @@ We compared linear methods against ensemble tree methods. The non-linear approac
 * **Diagnostics:** Validated model stability using Learning Curves to ensure no severe overfitting occurred.
 
 ## 📂 Repository Structure
-```text
+```
 ├── data/                   # (Optional) Folder for raw data
 ├── notebooks/              # Jupyter Notebooks containing the full pipeline
 ├── results/                # Generated prediction files
@@ -50,6 +50,7 @@ We compared linear methods against ensemble tree methods. The non-linear approac
 ├── README.md               # Project documentation
 └── requirements.txt        # Python dependencies
 ```
+
 
 ## 💻 How to Run
 1. Clone the repository.
