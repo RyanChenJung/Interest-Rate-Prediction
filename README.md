@@ -49,6 +49,7 @@ We compared linear methods against ensemble tree methods. The non-linear approac
 ├── models/                 # Serialized models (.pkl)
 ├── README.md               # Project documentation
 └── requirements.txt        # Python dependencies
+```
 
 ## 💻 How to Run
 1. Clone the repository.
